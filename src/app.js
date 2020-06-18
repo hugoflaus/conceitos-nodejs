@@ -52,8 +52,8 @@ app.put("/repositories/:id", (request, response) => {
 
     const repositoryIndex = repositories.findIndex(item => item.id === id);
 
-    if(!repositoryIndex){
-      return response.status(400).send({error:"Porject not found"});
+    if(repositoryIndex < 0){
+      return response.status(400).send({error:"Project not found"});
     }
 
     const repository = {
@@ -73,11 +73,11 @@ app.put("/repositories/:id", (request, response) => {
 
 app.delete("/repositories/:id", (request, response) => {
     const { id } = request.params;
-
-    const repositoryIndex = repositories.findIndex(item => item.id === id);
-
-    if(!repositoryIndex){
-      return response.status(400).send({error:"Porject not found"});
+  
+    const repositoryIndex = repositories.findIndex(item => item.id == id);
+   
+    if(repositoryIndex < 0){
+      return response.status(400).send({error:"Project not found"});
     }
 
     repositories.splice(repositoryIndex,1);
